@@ -8,21 +8,28 @@ const label = document.querySelector('#lightbox-label');
 const ordinal = document.querySelector('#lightbox-ordinal');
 const nav = document.querySelector('#navlinks');
 const menu = document.querySelector('#menu-toggle');
+const gallerySizes = new ResizeObserver(entries=>{
+  for (const {target, contentRect} of entries) {
+    const img=target.querySelector('img');
+    const sizes=`${Math.ceil(contentRect.width)}px`;
+    if (contentRect.width>0 && img.sizes!==sizes) img.sizes=sizes;
+  }
+});
 let active = 'all'; let visible = [...photos]; let selected = -1; let returnFocus = null;
 function categoryName(category) {return category === 'uo' ? 'Weitere Arbeiten' : 'Porträt';}
 function render() {
+  gallerySizes.disconnect();
   visible = [...photos];
   const nodes = document.createDocumentFragment();
   visible.forEach((photo, index) => {
     const item = document.createElement('button'); item.type='button';item.className='tile';
+    item.style.setProperty('--photo-ratio',String(photo.width/photo.height));
     item.setAttribute('aria-label', `Foto ${index+1} von ${visible.length} öffnen: ${categoryName(photo.category)}`);
     const figure = document.createElement('figure');
     const img=document.createElement('img');img.alt=`Fotografie ${index+1}`;
     if (photo.previews?.length) {
       img.srcset=photo.previews.map(p=>`${encodeURI(p.src)} ${p.width}w`).join(', ');
-      const mobileSize=index%6===0?'calc(100vw - 32px)':'calc((100vw - 39px) / 2)';
-      const desktopSize=[0,5].includes(index%8)?'min(calc(47.5vw - 6px), 750px)':'min(calc(23.75vw - 9px), 369px)';
-      img.sizes=`(max-width: 700px) ${mobileSize}, (max-width: 1050px) calc((95vw - 16px) / 3), ${desktopSize}`;
+      img.sizes='(max-width: 700px) 50vw, (max-width: 1050px) 33vw, 25vw';
     }
     img.loading='lazy';img.decoding='async';
     img.addEventListener('error',()=>{
@@ -36,7 +43,9 @@ function render() {
     const symbol=document.createElement('span');symbol.textContent='↗';cap.append(name,symbol);item.append(cap);
     item.addEventListener('click',()=>open(index,item));nodes.append(item);
   });
-  grid.replaceChildren(nodes);counter.textContent=visible.length+' Fotografien';
+  grid.replaceChildren(nodes);
+  for (const tile of grid.children) gallerySizes.observe(tile);
+  counter.textContent=visible.length+' Fotografien';
   for(const b of buttons)b.setAttribute('aria-pressed',String(active===b.dataset.filter));
 }
 function show(index){if(!visible.length)return;selected=(index+visible.length)%visible.length;const p=visible[selected];big.src=encodeURI(p.original?.src || p.src);big.alt='Originalfotografie aus der SHOOTS-Galerie';label.textContent=p.filename;ordinal.textContent=`${selected+1} / ${visible.length}`;}

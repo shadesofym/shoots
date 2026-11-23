@@ -55,3 +55,7 @@ Die Galerie wählt per `srcset`/`sizes` passende WebP-Vorschauen mit 480, 960, 1
 Zum erneuten Erzeugen: Python mit Pillow bereitstellen und `python3 scripts/generate-previews.py` ausführen. Das Skript prüft die Quell-Prüfsummen und aktualisiert `photos.json` sowie die eingebetteten Galeriedaten. Für den Cloudflare-Build sind weder Python noch zusätzliche Pakete nötig; die fertigen Vorschauen sind eingecheckt.
 
 Der Build versieht JavaScript- und CSS-Adressen automatisch mit einem Inhalts-Hash. So erhalten auch wiederkehrende Besucher nach Änderungen die aktuelle Darstellung statt bis zu vier Stunden alte Browser-Cache-Dateien.
+
+## Galerie-Anordnung
+
+Die Galerie ordnet Fotos in gleich hohen Reihen mit proportionalen Breiten an. Alle Motive bleiben vollständig sichtbar; die Reihenfolge und die Lightbox-Navigation bleiben erhalten. Nur die letzte Reihe darf rechts offen enden. Die natürliche Bildgröße reserviert den Platz bereits vor dem Laden. Ein ResizeObserver passt die WebP-Auswahl an die tatsächliche Kachelbreite an.
