@@ -1,0 +1,11 @@
+{
+  "name": "shoots-for-mood",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Originalfotografie-Portfolio für Cloudflare Pages",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/check.mjs"
+  },
+  "engines": { "node": ">=20" }
+}
