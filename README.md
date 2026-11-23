@@ -4,10 +4,10 @@ Eigenständige Fotografie-Website im Stil **Cinematic Dark × Future Editorial**
 
 ## Originalfotos
 
-**135 unveränderte Fotografien** aus dem WordPress-Galerieexport:
+**112 Fotografien in einer gemeinsamen Galerie** aus dem WordPress-Galerieexport:
 
-- `assets/portraet/` – 123 Bilder der Galerie «Porträt»
-- `assets/uo/` – 12 weitere Bilder; auf der Website als «Weitere Arbeiten» bezeichnet
+- `assets/portraet/` – 101 ausgewählte Bilder
+- `assets/uo/` – 11 weitere ausgewählte Bilder
 - Keine KI-Retusche, keine Farb- oder Kontrastfilter; sämtliche Bilddateien sind byteidentisch mit dem Import
 - Alle Fotos werden vollständig mit `object-fit: contain` gezeigt; die Galerie lässt Bilder in einer Vollbildansicht öffnen
 - `photos.json` enthält Bilddimensionen und SHA-256-Prüfsummen zur Überprüfung
@@ -22,7 +22,7 @@ npm run build
 python3 -m http.server 8080 --directory dist
 ```
 
-Im Browser `http://localhost:8080` öffnen und Desktop, Tablet, Mobile, Menü, Filter, Bilder und Vollbildansicht überprüfen.
+Im Browser `http://localhost:8080` öffnen und Desktop, Tablet, Mobile, Menü, Bilder und Vollbildansicht überprüfen.
 
 ## Cloudflare Pages (GitHub)
 
@@ -39,3 +39,11 @@ Wenn GitHub nicht automatisch veröffentlicht, in den Cloudflare-Projekteinstell
 - Die beiden Shooting-Anfrage-Links zeigen **vorläufig** auf `zucht@moyodogs.com`, weil keine eigenständige SHOOTS-Kontaktadresse bestätigt wurde. Vor Livegang gegebenenfalls ersetzen.
 - Rechtliche Seiten wie Impressum und Datenschutzhinweise sind noch nicht hinterlegt; vor einem öffentlichen Launch prüfen und ergänzen.
 - Der neue Internetauftritt ersetzt nicht automatisch dein bestehendes WordPress: Domain und DNS erst nach erfolgreicher Preview umstellen.
+
+## Bildqualität
+
+Für 111 der 112 Fotografien sind die größeren, bereits wassergezeichneten Dateien aus `fm-selection-j721451.zip` unter `assets/originals/` enthalten. Sie wurden byteidentisch aus den passenden `_backup`-Einträgen übernommen, ohne neue Kompression, Hochskalierung, Retusche oder Beschnitt. `scripts/image-sources.json` dokumentiert die Herkunft; `photos.json` enthält Auflösung und SHA-256 für Vorschau und Original. SKADIANYVOLOW.jpg bleibt bei 1500 × 1000 Pixeln: Das Archiv enthält keine größere Version.
+
+Die Galerie und das Titelbild wählen per `srcset`/`sizes` passend zur Anzeige und Pixeldichte zwischen der bisherigen Datei und dem größeren Original. Die Lightbox lädt immer das größte vorhandene Original. Auf kleinen Bildschirmen bleiben Bild und beide Pfeile vollständig im Fenster. Der Bildzoom beim Hover entfällt. Die natürliche Unschärfe innerhalb der Fotografien wird nicht verändert.
+
+`npm run check` prüft beide Dateiversionen sowie die Übereinstimmung mit den eingebetteten Galeriedaten. `npm run build` kopiert sämtliche Fotos unverändert. Die Cloudflare-Verbindung kann außerhalb des hier verfügbaren Kontos liegen; maßgeblich ist die tatsächliche Auslieferung auf shoots.moyodogs.com.

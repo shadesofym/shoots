@@ -18,6 +18,12 @@ function render() {
     item.setAttribute('aria-label', `Foto ${index+1} von ${visible.length} öffnen: ${categoryName(photo.category)}`);
     const figure = document.createElement('figure');
     const img=document.createElement('img');img.src=encodeURI(photo.src);img.alt=`Fotografie ${index+1}`;
+    if (photo.original) {
+      img.srcset=`${encodeURI(photo.src)} ${photo.width}w, ${encodeURI(photo.original.src)} ${photo.original.width}w`;
+      const mobileSize=index%6===0?'calc(100vw - 32px)':'calc((100vw - 39px) / 2)';
+      const desktopSize=[0,5].includes(index%8)?'min(calc(47.5vw - 6px), 750px)':'min(calc(23.75vw - 9px), 369px)';
+      img.sizes=`(max-width: 700px) ${mobileSize}, (max-width: 1050px) calc((95vw - 16px) / 3), ${desktopSize}`;
+    }
     img.loading=index<6?'eager':'lazy';img.decoding='async'; img.width=photo.width||900;img.height=photo.height||600;
     figure.append(img);item.append(figure);
     const cap=document.createElement('span');cap.className='tile-caption';
@@ -28,7 +34,8 @@ function render() {
   grid.replaceChildren(nodes);counter.textContent=visible.length+' Fotografien';
   for(const b of buttons)b.setAttribute('aria-pressed',String(active===b.dataset.filter));
 }
-function show(index){if(!visible.length)return;selected=(index+visible.length)%visible.length;const p=visible[selected];big.src=encodeURI(p.src);big.alt='Originalfotografie aus der SHOOTS-Galerie';label.textContent=p.filename;ordinal.textContent=`${selected+1} / ${visible.length}`;}
+function show(index){if(!visible.length)return;selected=(index+visible.length)%visible.length;const p=visible[selected];big.src=encodeURI(p.original?.src || p.src);big.alt='Originalfotografie aus der SHOOTS-Galerie';label.textContent=p.filename;ordinal.textContent=`${selected+1} / ${visible.length}`;}
+big.addEventListener('error',()=>{label.textContent='Bild konnte nicht geladen werden. Bitte erneut öffnen.';});
 function open(index,element){returnFocus=element;show(index);dialog.setAttribute('open','');document.body.classList.add('no-scroll');document.querySelector('#close-lightbox').focus();}
 function close(){dialog.removeAttribute('open');big.removeAttribute('src');document.body.classList.remove('no-scroll');returnFocus?.focus();}
 
