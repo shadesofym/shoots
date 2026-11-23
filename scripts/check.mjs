@@ -44,3 +44,11 @@ for (const p of data) {
   }
 }
 console.log(`${previewCount} WebP-Vorschauen geprüft: Format, Seitenverhältnis, Größen und Prüfsummen.`);
+
+const fontSources = JSON.parse(readFileSync(resolve(root, 'assets/fonts/sources.json'), 'utf8'));
+for (const font of fontSources) {
+  const bytes = readFileSync(resolve(root, font.file));
+  if (bytes.toString('ascii', 0, 4) !== 'wOF2' || createHash('sha256').update(bytes).digest('hex') !== font.sha256) throw Error(`Schriftdatei verändert: ${font.file}`);
+}
+if (/fonts\.(googleapis|gstatic)\.com/.test(readFileSync(resolve(root, 'style.css'), 'utf8'))) throw Error('Externe Google-Fonts-Anfrage vorhanden');
+console.log(`${fontSources.length} lokale WOFF2-Schriften geprüft.`);

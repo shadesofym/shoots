@@ -36,7 +36,7 @@ Wenn GitHub nicht automatisch veröffentlicht, in den Cloudflare-Projekteinstell
 
 ## Veröffentlichungs-Hinweise
 
-- Die beiden Shooting-Anfrage-Links zeigen **vorläufig** auf `zucht@moyodogs.com`, weil keine eigenständige SHOOTS-Kontaktadresse bestätigt wurde. Vor Livegang gegebenenfalls ersetzen.
+- Shooting-Anfragen gehen an die bestätigte Adresse `shadesofym@gmail.com`. Das Angebot ist als „Shootings schweizweit“ gekennzeichnet.
 - Rechtliche Seiten wie Impressum und Datenschutzhinweise sind noch nicht hinterlegt; vor einem öffentlichen Launch prüfen und ergänzen.
 - Der neue Internetauftritt ersetzt nicht automatisch dein bestehendes WordPress: Domain und DNS erst nach erfolgreicher Preview umstellen.
 
@@ -61,3 +61,9 @@ Der Build versieht JavaScript- und CSS-Adressen automatisch mit einem Inhalts-Ha
 Die Galerie ordnet Fotos in gleich hohen Reihen mit proportionalen Breiten an. Alle Motive bleiben vollständig sichtbar; die Reihenfolge und die Lightbox-Navigation bleiben erhalten. Nur die letzte Reihe darf rechts offen enden. Die natürliche Bildgröße reserviert den Platz bereits vor dem Laden. Ein ResizeObserver passt die WebP-Auswahl an die tatsächliche Kachelbreite an.
 
 Die Galeriebilder erscheinen rahmenlos ohne Beschriftungsleiste oder Pfeil unter dem Bild. Schmale Abstände trennen die Motive; alle Bilder bleiben anklickbar und per Tastatur bedienbar.
+
+## Einstieg, Kontakt und Schriften
+
+Der Handy-Einstieg zeigt den Slogan kompakter und blendet den wiederholten großen Markenschriftzug nur visuell aus; die H1 bleibt für assistive Technik erhalten. Der Einstieg zur Galerie bleibt direkt unter dem vollständigen Titelbild. Neben dem Bildzähler erklärt ein Hinweis das Öffnen der Originalansicht.
+
+Die tatsächlich verwendeten Schriften werden lokal aus `assets/fonts/` geladen: Barlow Condensed 700/800/900 und DM Sans als variable Datei für 400–700. Es gibt keine Google-Fonts-Netzwerkanfragen mehr. Die Latin-Dateien enthalten unter anderem die deutschen Umlaute und ß; für nicht enthaltene Zeichen bleiben die vorhandenen Ersatzschriften verfügbar. Herkunft, Prüfsummen und die OFL-Lizenzen liegen bei den Schriftdateien.
