@@ -11,27 +11,27 @@ const menu = document.querySelector('#menu-toggle');
 let active = 'all'; let visible = [...photos]; let selected = -1; let returnFocus = null;
 function categoryName(category) {return category === 'uo' ? 'Weitere Arbeiten' : 'Porträt';}
 function render() {
-  visible = photos.filter(p => active === 'all' || p.category === active);
+  visible = [...photos];
   const nodes = document.createDocumentFragment();
   visible.forEach((photo, index) => {
     const item = document.createElement('button'); item.type='button';item.className='tile';
     item.setAttribute('aria-label', `Foto ${index+1} von ${visible.length} öffnen: ${categoryName(photo.category)}`);
     const figure = document.createElement('figure');
-    const img=document.createElement('img');img.src=encodeURI(photo.src);img.alt=`${categoryName(photo.category)} – Fotografie ${index+1}`;
+    const img=document.createElement('img');img.src=encodeURI(photo.src);img.alt=`Fotografie ${index+1}`;
     img.loading=index<6?'eager':'lazy';img.decoding='async'; img.width=photo.width||900;img.height=photo.height||600;
     figure.append(img);item.append(figure);
     const cap=document.createElement('span');cap.className='tile-caption';
-    const name=document.createElement('span');name.textContent=categoryName(photo.category);
+    const name=document.createElement('span');name.textContent='Fotografie';
     const symbol=document.createElement('span');symbol.textContent='↗';cap.append(name,symbol);item.append(cap);
     item.addEventListener('click',()=>open(index,item));nodes.append(item);
   });
   grid.replaceChildren(nodes);counter.textContent=visible.length+' Fotografien';
   for(const b of buttons)b.setAttribute('aria-pressed',String(active===b.dataset.filter));
 }
-function show(index){if(!visible.length)return;selected=(index+visible.length)%visible.length;const p=visible[selected];big.src=encodeURI(p.src);big.alt=`Originalfotografie aus der Galerie ${categoryName(p.category)}`;label.textContent=p.filename;ordinal.textContent=`${selected+1} / ${visible.length}`;}
+function show(index){if(!visible.length)return;selected=(index+visible.length)%visible.length;const p=visible[selected];big.src=encodeURI(p.src);big.alt='Originalfotografie aus der SHOOTS-Galerie';label.textContent=p.filename;ordinal.textContent=`${selected+1} / ${visible.length}`;}
 function open(index,element){returnFocus=element;show(index);dialog.setAttribute('open','');document.body.classList.add('no-scroll');document.querySelector('#close-lightbox').focus();}
 function close(){dialog.removeAttribute('open');big.removeAttribute('src');document.body.classList.remove('no-scroll');returnFocus?.focus();}
-buttons.forEach(b=>b.addEventListener('click',()=>{active=b.dataset.filter;render();}));
+
 document.querySelector('#close-lightbox').addEventListener('click',close);
 document.querySelector('#prev-lightbox').addEventListener('click',()=>show(selected-1));
 document.querySelector('#next-lightbox').addEventListener('click',()=>show(selected+1));
