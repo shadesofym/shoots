@@ -27,15 +27,6 @@
     "sha256": "8ca42a5f9636498daefe3ec0d9ee598ed299b06ef125ccfdef9f7844b8303ee1"
   },
   {
-    "id": 4,
-    "category": "portraet",
-    "src": "assets/portraet/11GADSC4259.jpg",
-    "filename": "11GADSC4259.jpg",
-    "width": 1800,
-    "height": 1200,
-    "sha256": "9e9b3bceca86f762c2b47f67ba6c864dc564b6669b35a6e369167ff8f985306d"
-  },
-  {
     "id": 5,
     "category": "portraet",
     "src": "assets/portraet/11GALOGODSC4259.jpg",
@@ -378,15 +369,6 @@
     "sha256": "d42b31e690954cd05430420eb8b720d1e54d5fea386a84e8358ba0f227ed5a78"
   },
   {
-    "id": 51,
-    "category": "portraet",
-    "src": "assets/portraet/2SEXALOGODSC3798-scaled.jpg",
-    "filename": "2SEXALOGODSC3798-scaled.jpg",
-    "width": 1800,
-    "height": 1200,
-    "sha256": "ed0d1f2a49c06fef93162255b7f4290da8474b317012f78c37751de2e14a2237"
-  },
-  {
     "id": 52,
     "category": "portraet",
     "src": "assets/portraet/2SEXALOGODSC3798.jpg",
@@ -394,15 +376,6 @@
     "width": 1800,
     "height": 1200,
     "sha256": "372e9d44a53fc4f3cd701e5370455b64a4a34a6cc763a2a9e0852fa51b543f23"
-  },
-  {
-    "id": 53,
-    "category": "portraet",
-    "src": "assets/portraet/2YSWSDSC3654-scaled.jpg",
-    "filename": "2YSWSDSC3654-scaled.jpg",
-    "width": 1800,
-    "height": 1200,
-    "sha256": "f9159c983be9fca843b7a482ccaa09da4324c09e72d311e961b66553c9c6d9cc"
   },
   {
     "id": 55,
@@ -477,15 +450,6 @@
     "sha256": "9b532ea367a07ea12a3dc0c8b0d343adff0d6c566e3d9eb47c15f4f7baffd4d2"
   },
   {
-    "id": 64,
-    "category": "portraet",
-    "src": "assets/portraet/3YSSWSDSC3720-scaled.jpg",
-    "filename": "3YSSWSDSC3720-scaled.jpg",
-    "width": 1800,
-    "height": 1200,
-    "sha256": "50c5ebc24eae97cee9c742b6684d83e756b85134f172788b4dad43a69fe0abc0"
-  },
-  {
     "id": 65,
     "category": "portraet",
     "src": "assets/portraet/3YSSWSLOGODSC3720-scaled.jpg",
@@ -529,15 +493,6 @@
     "width": 1800,
     "height": 1200,
     "sha256": "8b71ca69773f3aa7c2f586e080db9d98887a1d4cab9c24b5fdf470b5b88df2af"
-  },
-  {
-    "id": 71,
-    "category": "portraet",
-    "src": "assets/portraet/4SEXALOGODSC3745-scaled.jpg",
-    "filename": "4SEXALOGODSC3745-scaled.jpg",
-    "width": 1800,
-    "height": 1200,
-    "sha256": "12d876a0af1ee82fdc2db162c400c96680d4f1dae07b73aad338b7c5b3d32e19"
   },
   {
     "id": 72,
@@ -610,15 +565,6 @@
     "width": 1800,
     "height": 1200,
     "sha256": "dba8d756fd5d96ef2b7c08d62eb9a7cd07e66e5a6b581b611aae1d315fd97399"
-  },
-  {
-    "id": 82,
-    "category": "portraet",
-    "src": "assets/portraet/6MarinaGLOGODSC3095-scaled.jpg",
-    "filename": "6MarinaGLOGODSC3095-scaled.jpg",
-    "width": 1800,
-    "height": 1200,
-    "sha256": "4b4fd49e0500e502c5028106b52a534cdaaf4441604228132392227276107ab5"
   },
   {
     "id": 83,
