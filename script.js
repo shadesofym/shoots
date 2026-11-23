@@ -17,14 +17,19 @@ function render() {
     const item = document.createElement('button'); item.type='button';item.className='tile';
     item.setAttribute('aria-label', `Foto ${index+1} von ${visible.length} öffnen: ${categoryName(photo.category)}`);
     const figure = document.createElement('figure');
-    const img=document.createElement('img');img.src=encodeURI(photo.src);img.alt=`Fotografie ${index+1}`;
-    if (photo.original) {
-      img.srcset=`${encodeURI(photo.src)} ${photo.width}w, ${encodeURI(photo.original.src)} ${photo.original.width}w`;
+    const img=document.createElement('img');img.alt=`Fotografie ${index+1}`;
+    if (photo.previews?.length) {
+      img.srcset=photo.previews.map(p=>`${encodeURI(p.src)} ${p.width}w`).join(', ');
       const mobileSize=index%6===0?'calc(100vw - 32px)':'calc((100vw - 39px) / 2)';
       const desktopSize=[0,5].includes(index%8)?'min(calc(47.5vw - 6px), 750px)':'min(calc(23.75vw - 9px), 369px)';
       img.sizes=`(max-width: 700px) ${mobileSize}, (max-width: 1050px) calc((95vw - 16px) / 3), ${desktopSize}`;
     }
-    img.loading=index<6?'eager':'lazy';img.decoding='async'; img.width=photo.width||900;img.height=photo.height||600;
+    img.loading='lazy';img.decoding='async';
+    img.addEventListener('error',()=>{
+      img.removeAttribute('srcset');
+      img.src=encodeURI(photo.src);
+    },{once:true});
+    img.src=encodeURI(photo.previews?.[0]?.src || photo.src); img.width=photo.width||900;img.height=photo.height||600;
     figure.append(img);item.append(figure);
     const cap=document.createElement('span');cap.className='tile-caption';
     const name=document.createElement('span');name.textContent='Fotografie';

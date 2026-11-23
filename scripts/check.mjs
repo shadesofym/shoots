@@ -27,3 +27,20 @@ for (const [i, p] of data.entries()) {
   if (createHash('sha256').update(readFileSync(resolve(root, o.src))).digest('hex') !== o.sha256) throw Error(`Original verändert: ${o.src}`);
 }
 console.log('Auflösung, Prüfsummen und eingebettete Bilddaten stimmen überein.');
+
+let previewCount = 0;
+for (const p of data) {
+  const source = p.original || p;
+  if (!p.previews?.length) throw Error(`Vorschauen fehlen: ${p.src}`);
+  let previousWidth = 0;
+  for (const preview of p.previews) {
+    if (preview.width <= previousWidth || preview.width > source.width || preview.height > source.height) throw Error(`Unzulässige Vorschaugröße: ${preview.src}`);
+    if (Math.abs(preview.height - source.height * preview.width / source.width) > .51) throw Error(`Vorschau beschnitten: ${preview.src}`);
+    const bytes = readFileSync(resolve(root, preview.src));
+    if (bytes.toString('ascii', 0, 4) !== 'RIFF' || bytes.toString('ascii', 8, 12) !== 'WEBP') throw Error(`Kein WebP: ${preview.src}`);
+    if (createHash('sha256').update(bytes).digest('hex') !== preview.sha256) throw Error(`Vorschau verändert: ${preview.src}`);
+    previousWidth = preview.width;
+    previewCount++;
+  }
+}
+console.log(`${previewCount} WebP-Vorschauen geprüft: Format, Seitenverhältnis, Größen und Prüfsummen.`);
