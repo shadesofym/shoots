@@ -53,3 +53,5 @@ Die Galerie wählt per `srcset`/`sizes` passende WebP-Vorschauen mit 480, 960, 1
 `assets/previews/` enthält aus den größten vorhandenen Quellen erzeugte WebP-Dateien (Qualität 90). Das gesamte Bild inklusive Wasserzeichen wird proportional verkleinert, ohne Beschnitt, Farbfilter oder Retusche; eingebettete ICC-Farbprofile werden übernommen. Die Galerie lädt Bilder erst in der Nähe des sichtbaren Bereichs. Bei einem Ladefehler fällt sie auf das vorhandene JPEG zurück. Die Lightbox verwendet weiterhin unveränderte JPEG-Originale.
 
 Zum erneuten Erzeugen: Python mit Pillow bereitstellen und `python3 scripts/generate-previews.py` ausführen. Das Skript prüft die Quell-Prüfsummen und aktualisiert `photos.json` sowie die eingebetteten Galeriedaten. Für den Cloudflare-Build sind weder Python noch zusätzliche Pakete nötig; die fertigen Vorschauen sind eingecheckt.
+
+Der Build versieht JavaScript- und CSS-Adressen automatisch mit einem Inhalts-Hash. So erhalten auch wiederkehrende Besucher nach Änderungen die aktuelle Darstellung statt bis zu vier Stunden alte Browser-Cache-Dateien.
