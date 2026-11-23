@@ -59,3 +59,5 @@ Der Build versieht JavaScript- und CSS-Adressen automatisch mit einem Inhalts-Ha
 ## Galerie-Anordnung
 
 Die Galerie ordnet Fotos in gleich hohen Reihen mit proportionalen Breiten an. Alle Motive bleiben vollständig sichtbar; die Reihenfolge und die Lightbox-Navigation bleiben erhalten. Nur die letzte Reihe darf rechts offen enden. Die natürliche Bildgröße reserviert den Platz bereits vor dem Laden. Ein ResizeObserver passt die WebP-Auswahl an die tatsächliche Kachelbreite an.
+
+Die Galeriebilder erscheinen rahmenlos ohne Beschriftungsleiste oder Pfeil unter dem Bild. Schmale Abstände trennen die Motive; alle Bilder bleiben anklickbar und per Tastatur bedienbar.

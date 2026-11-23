@@ -38,9 +38,6 @@ function render() {
     },{once:true});
     img.src=encodeURI(photo.previews?.[0]?.src || photo.src); img.width=photo.width||900;img.height=photo.height||600;
     figure.append(img);item.append(figure);
-    const cap=document.createElement('span');cap.className='tile-caption';
-    const name=document.createElement('span');name.textContent='Fotografie';
-    const symbol=document.createElement('span');symbol.textContent='↗';cap.append(name,symbol);item.append(cap);
     item.addEventListener('click',()=>open(index,item));nodes.append(item);
   });
   grid.replaceChildren(nodes);
